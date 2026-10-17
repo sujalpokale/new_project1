@@ -1,0 +1,840 @@
+/* ==========================================================================
+   SUNDARAM CINEMA WATCH PAGE STYLES (watch.css)
+   ========================================================================== */
+
+:root {
+  --cinema-bg: #070709;
+  --cinema-surface: #101015;
+  --cinema-border: rgba(255, 255, 255, 0.08);
+  --cinema-gold: #e2b76a;
+  --cinema-gold-glow: rgba(226, 183, 106, 0.35);
+  --cinema-text: #eaeaea;
+  --cinema-muted: #9999a5;
+  --cinema-radius: 12px;
+  --cinema-font-serif: 'Bodoni Moda', 'Cinzel', serif;
+  --cinema-font-sans: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+}
+
+body.watch-page-body {
+  background-color: var(--cinema-bg);
+  color: var(--cinema-text);
+  font-family: var(--cinema-font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Header Bar
+   -------------------------------------------------------------------------- */
+.cinema-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(7, 7, 9, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--cinema-border);
+  padding: 0.85rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.cinema-nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cinema-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 0.55rem 1.1rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+}
+
+.cinema-back-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  transform: translateX(-3px);
+}
+
+.cinema-brand {
+  display: flex;
+  align-items: center;
+}
+
+.cinema-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.cinema-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.cinema-logo-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+}
+
+.cinema-categories-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-cat-link {
+  color: var(--cinema-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.nav-cat-link:hover {
+  color: #fff;
+}
+
+.cinema-hire-btn {
+  background: linear-gradient(135deg, #e2b76a 0%, #c99b42 100%);
+  color: #000;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.55rem 1.15rem;
+  border-radius: 100px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cinema-hire-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px var(--cinema-gold-glow);
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Stage & Player
+   -------------------------------------------------------------------------- */
+.cinema-main-stage {
+  padding: 1.5rem 1rem 4rem 1rem;
+}
+
+.cinema-stage-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.cinema-player-box {
+  position: relative;
+  width: 100%;
+  border-radius: var(--cinema-radius);
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.ambient-glow {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  filter: blur(80px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+  transition: background 1s ease, opacity 0.5s ease;
+  border-radius: inherit;
+}
+
+.video-frame-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 78vh;
+  background: #000;
+  border-radius: var(--cinema-radius);
+  overflow: hidden;
+  border: 1px solid var(--cinema-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* For 9:16 vertical videos in theater */
+.video-frame-container.vertical-aspect {
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(circle at center, #15151c 0%, #050507 100%);
+}
+
+.cinema-active-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+  display: block;
+}
+
+/* Center Play Overlay */
+.center-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.center-play-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.big-play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  padding-left: 5px;
+}
+
+.big-play-btn:hover {
+  transform: scale(1.1);
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(226, 183, 106, 0.6);
+}
+
+/* Buffering Spinner */
+.video-buffering-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.video-buffering-spinner.active {
+  display: flex;
+}
+
+.spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--cinema-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Custom Cinema Controls Bar
+   -------------------------------------------------------------------------- */
+.cinema-controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem 1.5rem 1rem 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+.video-frame-container:hover .cinema-controls-bar,
+.cinema-controls-bar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cinema-progress-area {
+  width: 100%;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.cinema-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: height 0.15s ease;
+}
+
+.cinema-progress-area:hover .cinema-progress-bar {
+  height: 8px;
+}
+
+.cinema-progress-buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: inherit;
+}
+
+.cinema-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--cinema-gold);
+  border-radius: inherit;
+}
+
+.cinema-progress-handle {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.15s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.cinema-progress-area:hover .cinema-progress-handle {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cinema-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+}
+
+.controls-left, .controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ctrl-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.ctrl-btn:hover {
+  color: var(--cinema-gold);
+  transform: scale(1.1);
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.volume-slider {
+  width: 70px;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.cinema-time-display {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #bbb;
+  font-variant-numeric: tabular-nums;
+  margin-left: 0.4rem;
+}
+
+.cinema-badge-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: rgba(226, 183, 106, 0.15);
+  color: var(--cinema-gold);
+  border: 1px solid rgba(226, 183, 106, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.speed-toggle-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Metadata Section
+   -------------------------------------------------------------------------- */
+.cinema-meta-section {
+  margin-bottom: 3.5rem;
+}
+
+.cinema-meta-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.meta-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.meta-category-badge {
+  background: #fff;
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+}
+
+.meta-year-badge, .meta-location-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ccc;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+}
+
+.cinema-project-title {
+  font-family: var(--cinema-font-serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0 0 1.25rem 0;
+  text-transform: uppercase;
+}
+
+.cinema-project-description {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #bbb;
+  margin-bottom: 1.5rem;
+}
+
+.cinema-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.cinema-film-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #888;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+}
+
+.cinema-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.action-btn.primary-action {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.action-btn.primary-action:hover {
+  background: #fff;
+  color: #000;
+}
+
+.action-btn.secondary-action {
+  background: linear-gradient(135deg, #e2b76a 0%, #c99b42 100%);
+  color: #000;
+  border: none;
+}
+
+.action-btn.secondary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--cinema-gold-glow);
+}
+
+/* Tech Specs Box */
+.cinema-meta-specs {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: var(--cinema-radius);
+  padding: 1.75rem;
+}
+
+.specs-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--cinema-gold);
+  margin: 0 0 1.25rem 0;
+  border-bottom: 1px solid var(--cinema-border);
+  padding-bottom: 0.75rem;
+}
+
+.specs-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.85rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.65rem;
+}
+
+.spec-name {
+  color: #777;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
+.spec-data {
+  color: #e0e0e0;
+  font-weight: 500;
+  text-align: right;
+}
+
+.project-pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.pag-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--cinema-border);
+  color: #fff;
+  padding: 0.65rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.pag-btn:hover {
+  background: var(--cinema-gold);
+  color: #000;
+  border-color: var(--cinema-gold);
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Playlist Carousel / Explore More
+   -------------------------------------------------------------------------- */
+.cinema-playlist-section {
+  border-top: 1px solid var(--cinema-border);
+  padding-top: 3rem;
+  margin-top: 2rem;
+}
+
+.playlist-header {
+  margin-bottom: 1.75rem;
+}
+
+.playlist-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--cinema-gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.playlist-title {
+  font-family: var(--cinema-font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.playlist-card {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(226, 183, 106, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.playlist-card.active-card {
+  border-color: var(--cinema-gold);
+  box-shadow: 0 0 15px var(--cinema-gold-glow);
+}
+
+.playlist-card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #000;
+  overflow: hidden;
+}
+
+.playlist-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.playlist-card:hover .playlist-card-img {
+  transform: scale(1.06);
+}
+
+.playlist-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+.playlist-card:hover .playlist-play-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.playlist-card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.playlist-card-cat {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cinema-gold);
+  margin-bottom: 0.35rem;
+}
+
+.playlist-card-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.playlist-card-meta {
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Footer
+   -------------------------------------------------------------------------- */
+.cinema-footer {
+  border-top: 1px solid var(--cinema-border);
+  padding: 2.5rem 1.5rem;
+  background: #040405;
+}
+
+.cinema-footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.cinema-footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.cinema-footer-links a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cinema-footer-links a:hover {
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .cinema-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .cinema-categories-nav .nav-cat-link {
+    display: none;
+  }
+  .video-frame-container {
+    max-height: 55vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .cinema-header {
+    padding: 0.75rem 1rem;
+  }
+  .cinema-logo-text {
+    display: none;
+  }
+  .video-frame-container {
+    aspect-ratio: 16 / 9;
+    max-height: 40vh;
+  }
+  .cinema-project-title {
+    font-size: 1.5rem;
+  }
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .playlist-grid {
+    grid-template-columns: 1fr;
+  }
+}

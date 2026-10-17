@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Watch Film — films by SUNDARAM</title>
+  <meta name="description" content="Watch high-definition cinematography and visual storytelling by Sundaram.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:wght@400;500;600;700&family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/2.png?v=1">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css?v=86">
+  <link rel="stylesheet" href="watch.css?v=1">
+</head>
+
+<body class="watch-page-body">
+
+  <!-- Top Cinema Header Bar -->
+  <header class="cinema-header">
+    <div class="cinema-nav-container">
+      <a href="index.html" class="cinema-back-btn" title="Return to Main Portfolio">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>BACK TO PORTFOLIO</span>
+      </a>
+
+      <div class="cinema-brand">
+        <a href="index.html" class="cinema-logo-link">
+          <img src="assets/2.png" alt="Sundaram" class="cinema-logo-img">
+          <span class="cinema-logo-text">SUNDARAM CINEMA</span>
+        </a>
+      </div>
+
+      <nav class="cinema-categories-nav">
+        <a href="commercials.html" class="nav-cat-link">Commercials</a>
+        <a href="fashion.html" class="nav-cat-link">Fashion</a>
+        <a href="travel.html" class="nav-cat-link">Travel</a>
+        <a href="index.html#contact" class="cinema-hire-btn">GET IN TOUCH</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Cinema Stage Area -->
+  <main class="cinema-main-stage">
+    <div class="cinema-stage-container">
+      
+      <!-- Video Player Wrapper with Ambient Glow -->
+      <div class="cinema-player-box" id="playerBox">
+        <div class="ambient-glow" id="ambientGlow"></div>
+
+        <div class="video-frame-container" id="videoFrameContainer">
+          <video id="cinemaVideo" playsinline preload="auto" class="cinema-active-video">
+            Your browser does not support HTML5 video.
+          </video>
+
+          <!-- Big Center Play/Pause Overlay Button -->
+          <div class="center-play-overlay" id="centerPlayOverlay">
+            <button class="big-play-btn" id="bigPlayBtn" aria-label="Play Video">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Video Loading Indicator -->
+          <div class="video-buffering-spinner" id="bufferingSpinner">
+            <div class="spinner-ring"></div>
+            <span>Buffering 4K Master...</span>
+          </div>
+
+          <!-- Custom Cinema Controls Bar -->
+          <div class="cinema-controls-bar" id="controlsBar">
+            
+            <!-- Progress / Scrubber Bar -->
+            <div class="cinema-progress-area" id="progressArea">
+              <div class="cinema-progress-bar" id="progressBar">
+                <div class="cinema-progress-buffer" id="progressBuffer"></div>
+                <div class="cinema-progress-fill" id="progressFill"></div>
+                <div class="cinema-progress-handle" id="progressHandle"></div>
+              </div>
+            </div>
+
+            <!-- Lower Controls Row -->
+            <div class="cinema-controls-row">
+              <div class="controls-left">
+                <!-- Play / Pause -->
+                <button class="ctrl-btn" id="playPauseBtn" title="Play/Pause (Space)">
+                  <svg id="playIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg id="pauseIcon" style="display:none;" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+
+                <!-- Replay 10s -->
+                <button class="ctrl-btn" id="rewindBtn" title="Rewind 5s (Left Arrow)">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 4v6h6"></path>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                  </svg>
+                </button>
+
+                <!-- Volume & Mute -->
+                <div class="volume-container">
+                  <button class="ctrl-btn" id="volumeBtn" title="Mute/Unmute (M)">
+                    <svg id="volumeHighIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg id="volumeMuteIcon" style="display:none;" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2"></line>
+                      <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2"></line>
+                    </svg>
+                  </button>
+                  <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="1">
+                </div>
+
+                <!-- Time Display -->
+                <div class="cinema-time-display">
+                  <span id="currentTime">00:00</span> / <span id="totalDuration">00:00</span>
+                </div>
+              </div>
+
+              <div class="controls-right">
+                <!-- Quality Tag -->
+                <span class="cinema-badge-pill">4K MASTER</span>
+
+                <!-- Playback Speed -->
+                <button class="ctrl-btn speed-toggle-btn" id="speedBtn" title="Playback Speed">1.0x</button>
+
+                <!-- Fullscreen -->
+                <button class="ctrl-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+                  <svg id="fsEnterIcon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                  <svg id="fsExitIcon" style="display:none;" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Information & Metadata Panel -->
+      <section class="cinema-meta-section">
+        <div class="cinema-meta-grid">
+          
+          <!-- Left Column: Title, Narrative, Tags -->
+          <div class="cinema-meta-main">
+            <div class="meta-tag-row">
+              <span class="meta-category-badge" id="metaCategory">COMMERCIAL FILM</span>
+              <span class="meta-year-badge" id="metaYear">2026</span>
+              <span class="meta-location-badge" id="metaLocation">📍 Nagpur</span>
+            </div>
+
+            <h1 class="cinema-project-title" id="projectTitle">Project Title Loading...</h1>
+
+            <p class="cinema-project-description" id="projectDescription">
+              Detailed description loading...
+            </p>
+
+            <div class="cinema-tag-cloud" id="projectTags">
+              <!-- Dynamically populated tags -->
+            </div>
+
+            <div class="cinema-action-buttons">
+              <button class="action-btn primary-action" id="shareBtn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span id="shareBtnText">SHARE PROJECT</span>
+              </button>
+
+              <a href="index.html#contact" class="action-btn secondary-action">
+                <span>COLLABORATE ON A FILM →</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Technical Film Specifications -->
+          <div class="cinema-meta-specs">
+            <h3 class="specs-card-title">TECHNICAL SPECIFICATIONS</h3>
+
+            <div class="specs-table">
+              <div class="spec-row">
+                <span class="spec-name">CLIENT / PRODUCER</span>
+                <span class="spec-data" id="specClient">—</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">ROLE</span>
+                <span class="spec-data" id="specRole">Director of Photography & Editor</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">CAMERA SYSTEM</span>
+                <span class="spec-data" id="specCamera">Sony Cinema FX Line</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">OPTICS / LENSES</span>
+                <span class="spec-data" id="specLens">G Master Cinema Primes</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">COLOR & FORMAT</span>
+                <span class="spec-data" id="specFormat">4K DCI / S-Log3 Grade</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">ASPECT RATIO</span>
+                <span class="spec-data" id="specAspect">Cinematic Scope</span>
+              </div>
+            </div>
+
+            <!-- Quick Prev / Next Navigation -->
+            <div class="project-pagination">
+              <button class="pag-btn" id="prevProjectBtn" title="Previous Film">
+                <span>← PREVIOUS FILM</span>
+              </button>
+              <button class="pag-btn" id="nextProjectBtn" title="Next Film">
+                <span>NEXT FILM →</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Up Next / Film Reel Carousel -->
+      <section class="cinema-playlist-section">
+        <div class="playlist-header">
+          <span class="playlist-subtitle">SUNDARAM ARCHIVE</span>
+          <h2 class="playlist-title">EXPLORE MORE FILMS</h2>
+        </div>
+
+        <div class="playlist-grid" id="playlistGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Cinema Footer -->
+  <footer class="cinema-footer">
+    <div class="cinema-footer-inner">
+      <p>© 2026 films by SUNDARAM — All Rights Reserved</p>
+      <div class="cinema-footer-links">
+        <a href="index.html">Home</a>
+        <a href="commercials.html">Commercials</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="travel.html">Travel</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="projects-data.js?v=6"></script>
+  <script src="watch.js?v=1"></script>
+</body>
+
+</html>
+
+
+
+<!-- var(--font-sans) -->
